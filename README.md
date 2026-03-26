@@ -21,3 +21,5 @@ This script allows to generate Ichthyop zone files (XML format) based on the sam
 It takes the center of the sampling location and add a 1 degree squared bounding box around.
 
 The size of the box can be adapted (`dx` and `dy` parameters)
+
+3)
