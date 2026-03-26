@@ -22,4 +22,20 @@ It takes the center of the sampling location and add a 1 degree squared bounding
 
 The size of the box can be adapted (`dx` and `dy` parameters)
 
-3)
+3) `generate_configuration_files.py`
+
+This script allows to build multiple configuration files from the `config-laura-indo.xml` template. It allows to control:
+
+- Release date
+- Simulation duration
+- Lethal temperatures
+
+4) `generate-mpi-text-file.py`
+
+This script allows to create the text file that comes as an argument to the [ichthyop-mpi](https://github.com/ichthyop/ichthyop-mpi) tool.
+
+This script contains the multiple lines that will send to each MPI process on High Performance Computation (HPC) centers.
+
+5) `process-ichthytop-outputs.py`
+
+This script allows to post-process Ichthyop outputs to build connectivity matrix. They are exported as PNG and as CSV files
