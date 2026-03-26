@@ -2,7 +2,7 @@
 #PBS -q mpi_1
 #PBS -l mem=128G
 #PBS -l walltime=48:00:00
-# example of using 1node, i.e. 1*28 mpi procs 
+# example of using 1node, i.e. 1*28 mpi procs
 # cd to the directory you submitted your job
 
 cd $PBS_O_WORKDIR
@@ -11,21 +11,28 @@ outdir=$SCRATCH/indo-laura-final-run
 rm -rfv $outdir/*
 mkdir -p $outdir
 mkdir -p $outdir/data
-\cp -rfv /home/datawork-marbec-pmod/outputs/ICHTHYOP/laura-indonesie/processed/*nc $outdir/data
 
+laura_folder="/home1/datawork/nbarrier/ichthyop/laura"
+forcing_folder="/home/datawork-marbec-pmod/outputs/ICHTHYOP/laura-indonesie/processed/"
+
+# Copy the forcing files to the SCRATCH folder
+\cp -rfv ${forcing_folder}/*nc ${outdir}/data
+
+# Load the module needed for
 source /usr/share/Modules/3.2.10/init/csh
 module purge
 module load NETCDF/4.3.3.1-mpt-intel2016
 
+# Activate maven environment for Java
 . /appli/anaconda/latest/etc/profile.d/conda.sh
 conda activate maven
 
 # Copy running files
-\cp -rfv *ichthyop-mpi.txt ichthyop-mpi/ichthyopmpi configuration-files/* ichthyop-private/target/ichthyop-3.3.17-jar-with-dependencies.jar laura-zones.xml $outdir
+\cp -rfv *ichthyop-mpi.txt ${laura_folder}/ichthyop-mpi/ichthyopmpi configuration-files/* ${laura_folder}/ichthyop-private/target/ichthyop-3.3.17-jar-with-dependencies.jar laura-zones.xml $outdir
 
 cd $outdir
 
 date
+# The the Ichthtop MPI software
 time $MPI_LAUNCH -n 14 ichthyopmpi new-ichthyop-mpi.txt >& simulation_batch.log
 date
-

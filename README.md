@@ -14,6 +14,12 @@ This script allows to extract daily forcing fields for a given time-period.
 
 In the current version, data are extracted from 2019 to 2021. This can be adapted if needed.
 
+On Datarmor, this script must be launched by submitting the `download_files.pbs` job:
+
+```bash
+qsub download_files.pbs
+```
+
 2) `generate-zone-files.py`
 
 This script allows to generate Ichthyop zone files (XML format) based on the sampling locations (provided in `sampling-locations-diadema.csv`)
