@@ -6,7 +6,13 @@ The Ichthyop version used here can be dowloaded [here](https://github.com/ichthy
 
 ## Script description
 
-The scripts must be run in the following order:
+In this section, the scripts used to generate the Indonesian simulations are described.
+
+> [!WARNING]
+> The scripts need to be run in the order below
+
+> [!CAUTION]
+> You will need to update the scripts to change the paths
 
 1) `download_data.py`
 
@@ -42,6 +48,17 @@ This script allows to create the text file that comes as an argument to the [ich
 
 This script contains the multiple lines that will send to each MPI process on High Performance Computation (HPC) centers.
 
-5) `process-ichthytop-outputs.py`
+5) `run_ichythyop_mpi.pbs`
+
+When the zone files, the configuration files and the Ichthyop MPI input files are ready, the next step is to run the simulations.
+This is done by submitting the `run_ichythyop_mpi.pbs` job to Datarmor.
+
+```bash
+qsub run_ichythyop_mpi.pbs4
+```
+
+This will run the model by batches of 14 simulations in parralel.
+
+6) `process-ichthytop-outputs.py`
 
 This script allows to post-process Ichthyop outputs to build connectivity matrix. They are exported as PNG and as CSV files
