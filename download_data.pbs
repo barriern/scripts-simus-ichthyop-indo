@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -q ftp
+#PBS -l walltime=48:00:00
+#PBS -l mem=16G
+#
+# cd to the directory you submitted your job
+cd $PBS_O_WORKDIR
+
+rm *pbs.o*
+
+. /appli/anaconda/latest/etc/profile.d/conda.sh
+. /appli/anaconda/latest/etc/profile.d/mamba.sh
+
+mamba activate copernicus
+which python
+
+date
+python download_data.py >& download.log
+date
+

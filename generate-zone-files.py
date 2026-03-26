@@ -33,8 +33,8 @@ data = pd.read_csv('sampling-locations-diadema.csv')
 data
 
 # +
-dx = 0.3
-dy = 0.3
+dx = 0.5
+dy = 0.5
 zones = {}
 for i in range(data.shape[0]):
     temp = data.iloc[i, :]
